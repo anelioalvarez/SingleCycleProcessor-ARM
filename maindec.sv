@@ -13,17 +13,6 @@ Mapeo de Instrucciones:
     SUB  : 110_0101_1000
     AND  : 100_0101_0000
     ORR  : 101_0101_0000
-
-Model (despues borrar):
-    Reg2Loc  = 1'b
-    ALUSrc   = 1'b
-    MemtoReg = 1'b
-    RegWrite = 1'b
-    MemRead  = 1'b
-    MemWrite = 1'b
-    Branch   = 1'b
-    ALUOp    = 2'b
-
 */
 
 module maindec (
