@@ -5,6 +5,6 @@ module memory (
     output logic PCSrc_M
 );
 
-    assign PCSrc_M = (Branch_M & zero_M) ^ Uncondbranch_M,;
+    assign PCSrc_M = (Branch_M & zero_M) ^ Uncondbranch_M;
     
 endmodule

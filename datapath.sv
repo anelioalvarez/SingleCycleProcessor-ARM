@@ -6,7 +6,7 @@ module datapath
     input  logic         reg2loc,
     input  logic         AluSrc,
     input  logic [3:0]   AluControl,
-    input  logic	     Branch,
+    input  logic         Branch,
     input  logic         memRead,
     input  logic         memWrite,
     input  logic         regWrite,
