@@ -13,6 +13,7 @@ module datapath
     input  logic         memtoReg,
     input  logic [31:0]  IM_readData,
     input  logic [N-1:0] DM_readData,
+    input  logic         Uncondbranch,
     output logic [N-1:0] IM_addr, DM_addr, DM_writeData,
     output logic         DM_writeEnable, DM_readEnable
 );
@@ -58,7 +59,8 @@ module datapath
     memory MEMORY(
         .Branch_M(Branch), 
         .zero_M(zero),
-        .PCSrc_M(PCSrc)
+        .PCSrc_M(PCSrc),
+        .Uncondbranch_M(Uncondbranch)
     );
     
     writeback #(64) WRITEBACK(

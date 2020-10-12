@@ -3,7 +3,8 @@
 module controller(
     input  logic [10:0] instr,
     output logic [3:0]  AluControl,						
-    output logic        reg2loc, regWrite, AluSrc, Branch, memtoReg, memRead, memWrite
+    output logic        reg2loc, regWrite, AluSrc, Branch,
+    output logic        memtoReg, memRead, memWrite, Uncondbranch
 );
 
     logic [1:0] AluOp_s;
@@ -17,7 +18,8 @@ module controller(
         .MemRead(memRead),
         .MemWrite(memWrite),
         .Branch(Branch),
-        .ALUOp(AluOp_s)
+        .ALUOp(AluOp_s),
+        .Uncondbranch(Uncondbranch)
     );
     
     aludec decAlu(
