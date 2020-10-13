@@ -14,6 +14,7 @@ module execute
     input  logic [N-1:0] signImm_E,
     input  logic [N-1:0] readData1_E,
     input  logic [N-1:0] readData2_E,
+    input  logic         BranchSrc_E,    
     output logic [N-1:0] PCBranch_E,
     output logic [N-1:0] aluResult_E,
     output logic [N-1:0] writeData_E,
@@ -22,6 +23,7 @@ module execute
     // Internal signals
     logic [N-1:0] mux_out;
     logic [N-1:0] shift_left_2_out;
+    logic [N-1:0] add_out_imm;
 
 
     // Module instances
@@ -48,6 +50,13 @@ module execute
     adder #(64) Add(
         .a(PC_E),
         .b(shift_left_2_out),
+        .y(add_out_imm)
+    );
+
+    mux2 #(64) MUX_BR_PC(
+        .d0(add_out_imm),
+        .d1(readData1_E),
+        .s(BranchSrc_E),
         .y(PCBranch_E)
     );
 

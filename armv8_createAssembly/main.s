@@ -6,12 +6,13 @@ Addr : Data
 0    : 0x0
 1    : 0x1
 2    : 0x2
-3    : 0x3
-4    : 0x4
+3    : 0x0
+4    : 0x0
 5    : 0x5
 6    : 0x6
 7    : 0x1
 10   : 0xA
+11   : 0xB
 27   : 0x1B
 28   : 0x1C
 All others at 0x0 
@@ -25,6 +26,7 @@ All others at 0x0
 stur x0,[x0]
 stur x1,[x0,#8]
 stur x2,[x0,#16]
+br x24
 stur x3,[x0,#24]
 stur x4,[x0,#32]
 stur x5,[x0,#40]
@@ -50,6 +52,7 @@ label1:
 
 label2:
 	stur x10, [x0,#80]
+	stur x11, [x0,#88]
 	stur x27, [x0,#216]
 	b label3
 	

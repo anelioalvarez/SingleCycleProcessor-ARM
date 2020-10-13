@@ -14,6 +14,7 @@ module datapath
     input  logic [31:0]  IM_readData,
     input  logic [N-1:0] DM_readData,
     input  logic         Uncondbranch,
+    input  logic         BranchSrc,
     output logic [N-1:0] IM_addr, DM_addr, DM_writeData,
     output logic         DM_writeEnable, DM_readEnable
 );
@@ -53,7 +54,8 @@ module datapath
         .PCBranch_E(PCBranch), 
         .aluResult_E(DM_addr), 
         .writeData_E(DM_writeData), 
-        .zero_E(zero)
+        .zero_E(zero),
+        .BranchSrc_E(BranchSrc)
     );
     
     memory MEMORY(

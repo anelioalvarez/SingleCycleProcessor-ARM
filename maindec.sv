@@ -14,6 +14,7 @@ Mapeo de Instrucciones:
     AND  : 100_0101_0000
     ORR  : 101_0101_0000
     B    : 000_101?_????
+    BR   : 110_1011_0000
 */
 
 module maindec (
@@ -26,12 +27,14 @@ module maindec (
     output logic        MemWrite,
     output logic        Branch,
     output logic [1:0]  ALUOp,
-    output logic        Uncondbranch
+    output logic        Uncondbranch,
+    output logic        BranchSrc
 );
 
     always_comb
     begin
         Uncondbranch = 1'b0;
+        BranchSrc    = 1'b0;
 
         casez(Op)
             11'b111_1100_0010: begin // LDUR
@@ -121,6 +124,19 @@ module maindec (
                 Branch       = 1'b0;
                 ALUOp        = 2'b00;
                 Uncondbranch = 1'b1;
+            end
+
+            11'b110_1011_0000: begin // BR (R-format)
+                Reg2Loc      = 1'b0;
+                ALUSrc       = 1'b0;
+                MemtoReg     = 1'b0;
+                RegWrite     = 1'b0;
+                MemRead      = 1'b0;
+                MemWrite     = 1'b0;
+                Branch       = 1'b0;
+                ALUOp        = 2'b00;
+                Uncondbranch = 1'b1;
+                BranchSrc    = 1'b1;
             end
 
             default: begin           // undefined (all in 0)
