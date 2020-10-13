@@ -4,14 +4,8 @@
 
 Extension de Signo del Inmediato
 
-Mapeo de Instrucciones:
-	Inst : Opcode
-	LDUR : 111_1100_0010
-	STUR : 111_1100_0000
-	CBZ  : 101_1010_0???
-	B    : 000_101?_????
-
 */
+`include "macros.sv"
 
 module signext (
 	input  logic [31:0] a,
@@ -21,11 +15,11 @@ module signext (
 	always_comb
 	begin
 		casez(a[31:21]) // take 11 bits most significant (opcode)
-			11'b111_1100_0010: y = {{55{a[20]}}, a[20:12]}; // LDUR [D]
-			11'b111_1100_0000: y = {{55{a[20]}}, a[20:12]}; // STUR [D]
-			11'b101_1010_0???: y = {{45{a[23]}}, a[23:5]};  // CBZ  [CB]
-			11'b000_101?_????: y = {{38{a[25]}}, a[25:0]};  // B    [B]
-			default          : y = 64'b0;                   // not Immediate [R,]
+			`LDUR  : y = {{55{a[20]}}, a[20:12]}; // [D]
+			`STUR  : y = {{55{a[20]}}, a[20:12]}; // [D]
+			`CBZ   : y = {{45{a[23]}}, a[23:5]};  // [CB]
+			`B     : y = {{38{a[25]}}, a[25:0]};  // [B]
+			default: y = 64'b0;                   // not Immediate [R,]
 		endcase
 	end
 		

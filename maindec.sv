@@ -4,18 +4,8 @@
 
 Decodificador para generar las seniales de control
 
-Mapeo de Instrucciones:
-    Inst : Opcode
-    LDUR : 111_1100_0010
-    STUR : 111_1100_0000
-    CBZ  : 101_1010_0???
-    ADD  : 100_0101_1000
-    SUB  : 110_0101_1000
-    AND  : 100_0101_0000
-    ORR  : 101_0101_0000
-    B    : 000_101?_????
-    BR   : 110_1011_0000
 */
+`include "macros.sv"
 
 module maindec (
     input  logic [10:0] Op,
@@ -37,7 +27,7 @@ module maindec (
         BranchSrc    = 1'b0;
 
         casez(Op)
-            11'b111_1100_0010: begin // LDUR
+            `LDUR: begin
                 Reg2Loc  = 1'b0;
                 ALUSrc   = 1'b1;
                 MemtoReg = 1'b1;
@@ -48,7 +38,7 @@ module maindec (
                 ALUOp    = 2'b00;
             end
 
-            11'b111_1100_0000: begin // STUR
+            `STUR: begin
                 Reg2Loc  = 1'b1;
                 ALUSrc   = 1'b1;
                 MemtoReg = 1'b0;
@@ -59,7 +49,7 @@ module maindec (
                 ALUOp    = 2'b00;
             end
 
-            11'b101_1010_0???: begin // CBZ
+            `CBZ: begin
                 Reg2Loc  = 1'b1;
                 ALUSrc   = 1'b0;
                 MemtoReg = 1'b0;
@@ -70,7 +60,7 @@ module maindec (
                 ALUOp    = 2'b01;
             end
 
-            11'b100_0101_1000: begin // ADD (R-format)
+            `ADD: begin
                 Reg2Loc  = 1'b0;
                 ALUSrc   = 1'b0;
                 MemtoReg = 1'b0;
@@ -81,7 +71,7 @@ module maindec (
                 ALUOp    = 2'b10;
             end
 
-            11'b110_0101_1000: begin // SUB (R-format)
+            `SUB: begin
                 Reg2Loc  = 1'b0;
                 ALUSrc   = 1'b0;
                 MemtoReg = 1'b0;
@@ -92,7 +82,7 @@ module maindec (
                 ALUOp    = 2'b10;
             end
 
-            11'b100_0101_0000: begin // AND (R-format)
+            `AND: begin
                 Reg2Loc  = 1'b0;
                 ALUSrc   = 1'b0;
                 MemtoReg = 1'b0;
@@ -103,7 +93,7 @@ module maindec (
                 ALUOp    = 2'b10;
             end
 
-            11'b101_0101_0000: begin // ORR (R-format)
+            `ORR: begin
                 Reg2Loc  = 1'b0;
                 ALUSrc   = 1'b0;
                 MemtoReg = 1'b0;
@@ -114,7 +104,7 @@ module maindec (
                 ALUOp    = 2'b10;
             end
 
-            11'b000_101?_????: begin // B (B-format)
+            `B: begin
                 Reg2Loc      = 1'b0;
                 ALUSrc       = 1'b0;
                 MemtoReg     = 1'b0;
@@ -126,7 +116,7 @@ module maindec (
                 Uncondbranch = 1'b1;
             end
 
-            11'b110_1011_0000: begin // BR (R-format)
+            `BR: begin
                 Reg2Loc      = 1'b0;
                 ALUSrc       = 1'b0;
                 MemtoReg     = 1'b0;
@@ -139,7 +129,7 @@ module maindec (
                 BranchSrc    = 1'b1;
             end
 
-            default: begin           // undefined (all in 0)
+            default: begin           // undefined opcode (all at 0)
                 Reg2Loc  = 1'b0;
                 ALUSrc   = 1'b0;
                 MemtoReg = 1'b0;
