@@ -115,7 +115,7 @@ module maindec (
                 Reg2Loc      = 1'b0;
                 ALUSrc       = 1'b0;
                 MemtoReg     = 1'b0;
-                RegWrite     = 1'b1;
+                RegWrite     = 1'b0;
                 MemRead      = 1'b0;
                 MemWrite     = 1'b0;
                 Branch       = 1'b0;
