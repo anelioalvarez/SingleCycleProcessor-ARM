@@ -12,7 +12,7 @@ Addr : Data
 6    : 0x6
 7    : 0x1
 10   : 0xA
-11   : 0xB
+11   : 0xFE0
 27   : 0x1B
 28   : 0x1C
 All others at 0x0 
@@ -52,6 +52,7 @@ label1:
 
 label2:
 	stur x10, [x0,#80]
+	add x11, x0, 4064
 	stur x11, [x0,#88]
 	stur x27, [x0,#216]
 	b label3

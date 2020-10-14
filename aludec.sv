@@ -23,13 +23,22 @@ module aludec (
             // CBZ
             2'b01: alucontrol = `PASS_INPUT_B;
             
-            // See Opcode
+            // [R]
             2'b10:
+                // See Opcode
                 case(funct)
                     `ADD   : alucontrol = `A_PLUS_B;
                     `SUB   : alucontrol = `A_MINUS_B;
                     `AND   : alucontrol = `A_AND_B;
                     `ORR   : alucontrol = `A_OR_B;
+                    default: alucontrol = 4'b0000;
+                endcase
+
+            // [I]
+            2'b11:
+                // See Opcode
+                casez(funct)
+                    `ADDI  : alucontrol = `A_PLUS_B;
                     default: alucontrol = 4'b0000;
                 endcase
 

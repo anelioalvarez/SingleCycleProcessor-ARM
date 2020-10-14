@@ -19,7 +19,7 @@ module imem
     initial // ROM initialization execute only one time, and sequentially
     begin
         ROM = '{default: '0}; // set all ROM with 0s
-        ROM [0:27] ='{
+        ROM [0:28] ='{
             32'hf8000000,
             32'hf8008001,
             32'hf8010002,
@@ -41,11 +41,12 @@ module imem
             32'hcb01000f,
             32'h8b01000f,
             32'hf803800f,
-            32'h14000005,
+            32'h14000006,
             32'hf805000a,
+            32'h913f800b,
             32'hf805800b,
             32'hf80d801b,
-            32'h17fffff3,
+            32'h17fffff2,
             32'hf80e001c,
             32'hb400001f
         };

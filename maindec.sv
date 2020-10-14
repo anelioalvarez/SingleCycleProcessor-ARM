@@ -129,6 +129,17 @@ module maindec (
                 BranchSrc    = 1'b1;
             end
 
+            `ADDI: begin
+                Reg2Loc  = 1'b0;
+                ALUSrc   = 1'b1;
+                MemtoReg = 1'b0;
+                RegWrite = 1'b1;
+                MemRead  = 1'b0;
+                MemWrite = 1'b0;
+                Branch   = 1'b0;
+                ALUOp    = 2'b11;
+            end
+
             default: begin           // undefined opcode (all at 0)
                 Reg2Loc  = 1'b0;
                 ALUSrc   = 1'b0;

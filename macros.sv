@@ -11,6 +11,10 @@
 `define ORR  11'b101_0101_0000
 `define B    11'b000_101?_????
 `define BR   11'b110_1011_0000
+`define ADDI 11'b100_1000_100?
+//`define ANDI 11'b
+//`define ORRI 11'b
+//`define SUBI 11'b
 
 // Operation Mapping: Operation -> Ctrl
 `define A_AND_B      4'b0000
