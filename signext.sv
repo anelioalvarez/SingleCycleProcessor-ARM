@@ -20,6 +20,9 @@ module signext (
 			`CBZ   : y = {{45{a[23]}}, a[23:5]};  // [CB]
 			`B     : y = {{38{a[25]}}, a[25:0]};  // [B]
 			`ADDI  : y = {52'b0, a[21:10]};       // [I] unsigned!
+			`ANDI  : y = {52'b0, a[21:10]};       // [I] unsigned!
+			`ORRI  : y = {52'b0, a[21:10]};       // [I] unsigned!
+			`SUBI  : y = {52'b0, a[21:10]};       // [I] unsigned!
 			default: y = 64'b0;                   // not Immediate [R,]
 		endcase
 	end

@@ -39,6 +39,9 @@ module aludec (
                 // See Opcode
                 casez(funct)
                     `ADDI  : alucontrol = `A_PLUS_B;
+                    `ANDI  : alucontrol = `A_AND_B;
+                    `ORRI  : alucontrol = `A_OR_B;
+                    `SUBI  : alucontrol = `A_MINUS_B;
                     default: alucontrol = 4'b0000;
                 endcase
 

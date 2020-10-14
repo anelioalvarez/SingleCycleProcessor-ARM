@@ -14,8 +14,8 @@ Addr : Data
 10   : 0xA
 11   : 0xFE0
 27   : 0x1B
-28   : 0x1C
-All others at 0x0 
+28   : 0x666
+the rest at 0x0 
 
 */
 
@@ -57,7 +57,13 @@ label2:
 	stur x27, [x0,#216]
 	b label3
 	
-label4: stur x28, [x0,#224]
+label4:
+	add x28, x0, 1639
+	sub x28, x28, 1
+	and x28, x28, 1
+	orr x30, x0, 1
+	cbz x30, infloop
+	stur x28, [x0,#224]
 
 infloop:
 	cbz xzr, infloop
