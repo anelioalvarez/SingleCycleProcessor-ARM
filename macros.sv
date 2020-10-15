@@ -15,7 +15,7 @@
 `define ANDI 11'b100_1001_000?
 `define ORRI 11'b101_1001_000?
 `define SUBI 11'b110_1000_100?
-//`define MOVZ
+`define MOVZ 11'b110_1001_01??
 
 // Operation Mapping: Operation -> Ctrl
 `define A_AND_B      4'b0000
@@ -24,4 +24,8 @@
 `define A_MINUS_B    4'b0110
 `define PASS_INPUT_B 4'b0111
 `define A_NOR_B      4'b1100
+`define MOVZ_B_00    4'b1000
+`define MOVZ_B_01    4'b1001
+`define MOVZ_B_10    4'b1010
+`define MOVZ_B_11    4'b1011
 

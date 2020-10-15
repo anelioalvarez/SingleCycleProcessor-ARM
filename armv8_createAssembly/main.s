@@ -13,7 +13,7 @@ Addr : Data
 7    : 0x1
 10   : 0xA
 11   : 0xFE0
-27   : 0x1B
+27   : 0xCACA0000
 28   : 0x666
 the rest at 0x0 
 
@@ -52,8 +52,9 @@ label1:
 
 label2:
 	stur x10, [x0,#80]
-	add x11, x0, 4064
+	add x11, x0, 0xfe0
 	stur x11, [x0,#88]
+	movz x27, 0xcaca, lsl 16
 	stur x27, [x0,#216]
 	b label3
 	
