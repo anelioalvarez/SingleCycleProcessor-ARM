@@ -20,4 +20,6 @@ main.o : main.s
 main.list: memmap main.o 
 	$(ARMGNU)-ld main.o -T memmap -o main.elf -M > memory_map.txt
 	$(ARMGNU)-objdump -D main.elf > main.list
-	
+
+generate_rom: main.list
+	python3 ROM_generator.py
